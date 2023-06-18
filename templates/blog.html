@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+      {% block content %}
+
+    <section class="bg-white dark:bg-gray-900">
+        <h1 class="text-center text-3xl font-bold text-gray-900 dark:text-white">Blog Outline Tool</h1>
+        <br>
+        <form action="/blog" method="post">
+            <div class="mb-4">
+                <label for="title" class="block mb-2 text-2xl font-bold text-center text-gray-900 dark:text-white">Title</label>
+                <input type="text" id="title" name="title" required class="block p-3 w-6/12 mx-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter the title">
+            </div>
+            <div class="mb-4">
+                <label for="keywords" class="block mb-2 text-2xl font-bold text-center text-gray-900 dark:text-white">Keywords</label>
+                <input type="text" id="keywords" name="keywords" required class="block p-3 w-6/12 mx-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter the keywords">
+            </div>
+            <div class="text-center mt-4">
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Generate Blog Outline</button>
+            </div>
+        </form>
+        <br>
+        {% if generated_blog %}
+            <section id="output-section" class="bg-white dark:bg-gray-900">
+                <label for="generated-blog" class="block mb-2 text-2xl font-bold text-center text-gray-900 dark:text-white">Generated Blog</label>
+                <center><button onclick="copyToClipboard('generated-blog')" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Copy</button></center>
+                <div class="relative">
+                    <textarea id="generated-blog" name="generated-blog" rows="12" class="block p-3 w-6/12 mx-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly>{{ generated_blog }}</textarea>
+                </div>
+            </section>
+        {% endif %}
+    </section>
+
+    <section class="bg-white dark:bg-gray-900">
+    </section>
+
+          {% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+      {% block content %}
+
+    <section class="bg-white dark:bg-gray-900">
+        <h1 class="text-center text-3xl font-bold text-gray-900 dark:text-white">Email Writing Tool</h1>
+        <br>
+        <form action="#output-section" method="get">
+            <div class="mb-4">
+                <label for="topic" class="block mb-2 text-2xl font-bold text-center text-gray-900 dark:text-white">Topic</label>
+                <input type="text" id="topic" name="topic" required class="block p-3 w-6/12 mx-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter the topic">
+            </div>
+            <div class="mb-4">
+                <label for="title" class="block mb-2 text-2xl font-bold text-center text-gray-900 dark:text-white">Title</label>
+                <input type="text" id="title" name="title" required class="block p-3 w-6/12 mx-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter the title">
+            </div>
+            <div class="mb-4">
+                <label for="tone" class="block mb-2 text-2xl font-bold text-center text-gray-900 dark:text-white">Tone</label>
+                <select id="tone" name="tone" required class="block p-3 w-6/12 mx-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="">Select tone</option>
+                    <option value="formal">Formal</option>
+                    <option value="informal">Informal</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="title" class="block mb-2 text-2xl font-bold text-center text-gray-900 dark:text-white">Keywords</label>
+                <input type="text" id="title" name="title" required class="block p-3 w-6/12 mx-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter the keypoints">
+            </div>
+            <div class="text-center mt-4">
+                <button type="button" onclick="generateEmail()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Generate Email</button>
+            </div>
+        </form>
+        <br>
+        <section id="output-section" class="bg-white dark:bg-gray-900">
+            <label for="generated-email" class="block mb-2 text-2xl font-bold text-center text-gray-900 dark:text-white">Generated Email</label>
+            <textarea id="generated-email" name="generated-email" rows="12" class="block p-3 w-6/12 mx-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly></textarea>
+        </section>
+    </section>
+    
+    <section class="bg-white dark:bg-gray-900">        
+    </section>
+
+          {% endblock %}
