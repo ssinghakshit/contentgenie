@@ -6,7 +6,11 @@ import openai
 import os
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-openai.api_key =
+from dotenv import load_dotenv
+
+load_dotenv() 
+
+openai.api_key =os.getenv("OPENAI_API_KEY")
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'
@@ -52,7 +56,7 @@ def blog():
             keywords = request.form['keywords']
             prompt = f"""As a technical writer experienced in SEO, please create a detailed blog post outline that provides a step-by-step guide for using {title}, with these keywords : {keywords} targeting beginners with a friendly and helpful tone and a desired length of 800-1000 words."""
             response = openai.Completion.create(
-                model="text-davinci-003",
+                model="gpt-3.5-turbo-instruct",
                 prompt=prompt,
                 temperature=0.7,
                 max_tokens=1000,
@@ -63,9 +67,6 @@ def blog():
             generated_blog = response.choices[0].text
             return render_template('blog.html', generated_blog=generated_blog)
         return render_template('blog.html')
-
-
-
 
 @app.route('/email', methods=['GET', 'POST'])
 def email():
@@ -93,7 +94,7 @@ def email():
             [Your Name]
             """.format(title, tone, keywords)
             response = openai.Completion.create(
-                model="text-davinci-003",
+                model="gpt-3.5-turbo-instruct",
                 prompt=prompt,
                 temperature=0.7,
                 max_tokens=256,
@@ -188,7 +189,7 @@ def social():
     - You want to create a social media post with hashtags to promote a new book on Instagram. The post should include #booklovers, #readingtime, and #newrelease.
     - You want to create a social media post with hashtags to promote a sale on Twitter. The post should include #discounts, #limitedoffer, and #shopnow."""
             response = openai.Completion.create(
-                model="text-davinci-003",
+                model="gpt-3.5-turbo-instruct",
                 prompt=promt,
                 temperature=0.7,
                 max_tokens=256,
