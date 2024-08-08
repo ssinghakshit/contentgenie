@@ -10,12 +10,12 @@ from dotenv import load_dotenv
 
 load_dotenv() 
 
-openai.api_key =os.getenv("OPENAI_API_KEY")
+openai.api_key=os.getenv("OPENAI_API_KEY")
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = 'mysecretkey'
+app.secret_key = os.getenv('FLASK_SECRET_KEY')
 db = SQLAlchemy(app)
 
 class User(db.Model):
@@ -207,4 +207,5 @@ if __name__ == '__main__':
     if not os.path.exists('mydatabase.db'):
         with app.app_context():
             create_tables()
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
