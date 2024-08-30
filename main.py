@@ -36,6 +36,10 @@ def page_not_found(e):
 def not_found():
     abort(404)
 
+@app.route('/health', methods=['GET'])
+def health_check():
+    return "OK", 200
+
 @app.route('/')
 @app.route('/home')
 def home():
